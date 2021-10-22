@@ -1,11 +1,18 @@
-using System;
+using System.Collections.Generic;
 
-namespace Treats.Models
+namespace Bakery.Models
 {
-    public class ErrorViewModel
+  public class Treat
+  {
+    public Treat()
     {
-        public string RequestId { get; set; }
-
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+      this.JoinEntities = new HashSet<FlavorTreat>();
     }
+
+    public int TreatId { get; set; }
+    public string Name { get; set; }
+    public virtual ApplicationUser User { get; set; }
+
+    public virtual ICollection<FlavorTreat> JoinEntities { get;}
+  }
 }
