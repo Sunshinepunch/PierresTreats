@@ -2,6 +2,32 @@
   Layout = "_Layout";
 }
 
+
+<h4><b>List of Flavors</b></h4>
+
+<table>
+    @foreach (Flavor flavor in ViewBag.Flavors)
+    {
+        <tr>
+            <td>@Html.ActionLink($"{flavor.Name}", "Details", "Flavors", new { id = flavor.FlavorId })</td>
+        </tr>
+    }
+</table>
+<br>
+<br>
+<h4><b>List of Treats</b></h4>
+
+<table>
+    @foreach (Treat treat in ViewBag.Treats)
+    {
+        <tr>
+            <td>@Html.ActionLink($"{treat.Name}", "Details", "Treats", new { id = treat.TreatId })</td>
+        </tr>
+    }
+</table>
+<br>
+<br>
+
 <h1>Welcome to Pierre's Sweet Treat Meet!</h1>
 <p>@Html.ActionLink("See all items", "Index", "Items")</p> <p>@Html.ActionLink("See all categories", "Index", "Categories")</p>
 <p>@Html.ActionLink("Create an account", "Index", "Account")</p>
