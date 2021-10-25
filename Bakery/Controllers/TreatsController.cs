@@ -22,7 +22,7 @@ namespace Bakery.Controllers
       _userManager = userManager;
       _db = db;
     }
-   
+   [Authorize]
     public async Task<ActionResult> Index()
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -30,6 +30,7 @@ namespace Bakery.Controllers
       var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
       return View(userTreats);
     }
+
     [Authorize]
     public ActionResult Create()
     {

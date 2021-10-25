@@ -4,12 +4,12 @@
 
 @model Bakery.Models.Treat
 
-<h4>Add a new task</h4>
+<h4>Add a new treat</h4>
 
 @using (Html.BeginForm())
 {
-  @Html.LabelFor(model => model.Description)
-  @Html.TextBoxFor(model => model.Description)
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
 
   @Html.Label("Select flavor")
   @Html.DropDownList("FlavorId")
