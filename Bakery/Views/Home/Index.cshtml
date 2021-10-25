@@ -1,10 +1,11 @@
-﻿@{
+﻿@using Bakery.Models
+@{
   Layout = "_Layout";
 }
 
 
 <h4><b>List of Flavors</b></h4>
-@* 
+
 <table>
     @foreach (Flavor flavor in ViewBag.Flavors)
     {
@@ -26,9 +27,10 @@
     }
 </table>
 <br>
-<br> *@
+<br>
 
 <h1>Welcome to Pierre's Sweet Treat Meet!</h1>
 <p>@Html.ActionLink("See all treats", "Index", "Treats")</p> 
 <p>@Html.ActionLink("See all flavors", "Index", "Flavors")</p>
 <p>@Html.ActionLink("Create an account", "Index", "Account")</p>
+<p>@Html.ActionLink("Logout", "Index", "Account")</p>
