@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace Bakery.Controllers
 {
+  
   public class FlavorsController : Controller
   {
     private readonly BakeryContext _db;
@@ -14,13 +15,13 @@ namespace Bakery.Controllers
     {
       _db = db;
     }
-
+    [AllowAnonymous]
     public ActionResult Index()
     {
       List<Flavor> model = _db.Flavors.ToList();
       return View(model);
     }
-
+    [Authorize]
     public ActionResult Create()
     {
       return View();
@@ -42,6 +43,7 @@ namespace Bakery.Controllers
           .FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
     }
+    [Authorize]
     public ActionResult Edit(int id)
     {
       var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
@@ -55,7 +57,7 @@ namespace Bakery.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
+    [Authorize]
     public ActionResult Delete(int id)
     {
       var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);

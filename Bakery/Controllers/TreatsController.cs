@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace Bakery.Controllers
 {
-  [Authorize]
+  
   public class TreatsController : Controller
   {
     private readonly BakeryContext _db;
@@ -22,7 +22,7 @@ namespace Bakery.Controllers
       _userManager = userManager;
       _db = db;
     }
-
+   
     public async Task<ActionResult> Index()
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -30,7 +30,7 @@ namespace Bakery.Controllers
       var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
       return View(userTreats);
     }
-
+    [Authorize]
     public ActionResult Create()
     {
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
@@ -61,7 +61,7 @@ namespace Bakery.Controllers
           .FirstOrDefault(treat => treat.TreatId == id);
       return View(thisTreat);
     }
-
+    [Authorize]
     public ActionResult Edit(int id)
     {
       var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
@@ -80,12 +80,12 @@ namespace Bakery.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
+    [Authorize]
     public ActionResult AddFlavor(int id)
     {
       var thistreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
-      return View(thisTreat);
+      return View(thistreat);
     }
 
     [HttpPost]
@@ -98,7 +98,7 @@ namespace Bakery.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
+    [Authorize]
     public ActionResult Delete(int id)
     {
       var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
